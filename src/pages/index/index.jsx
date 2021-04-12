@@ -1,17 +1,13 @@
-import React ,{ useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { View, Text } from '@tarojs/components'
 import { connect } from 'react-redux'
-import { AtButton } from 'taro-ui'
+import { AtButton, AtInput } from 'taro-ui'
 import "taro-ui/dist/style/components/button.scss" // 按需引入
+import "./index.less"
 
 // eslint-disable-next-line
 const Index = React.forwardRef((props, ref) => {
-  const { global: { name } } = props
-  useEffect(()=>{
-    props.dispatch({
-      type:"global/login"
-    })
-  },[props])
+  const { global: { name, inputValue } } = props
 
   const handleClick = () => {
     props.dispatch({
@@ -21,10 +17,13 @@ const Index = React.forwardRef((props, ref) => {
       }
     })
   }
-  
+
   return (
     <View className='index'>
       <Text>{name}</Text>
+      <AtInput value={inputValue} onChange={e => props.dispatch({ type: "global/save", payload: { inputValue: e } })} />
+      <Text className="title">{inputValue}</Text>
+      <Text style={{ color: "red" }}>{inputValue}</Text>
       <AtButton onClick={handleClick.bind(this)} />
     </View>
   )

@@ -5,7 +5,8 @@ import { login } from '../service/Login/login'
 export default {
   namespace: 'global', // 这是模块名
   state: { // 初始化数据
-    name: "欢迎来到Taro-Ui"
+    name: "欢迎来到Taro-Ui",
+    inputValue: "",
   },
 
   effects: {
