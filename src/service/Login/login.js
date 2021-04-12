@@ -2,7 +2,7 @@ import requset from '../requst'
 
  // post
 export async function login(params) {
-  return requset.post('home/login', params,{ });
+  return requset.post('/api/login', params,{});
 }
 
 // get

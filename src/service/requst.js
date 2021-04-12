@@ -3,7 +3,7 @@ import { HTTP_STATUS } from './status'
 import { logError } from './logError'
 
 const token = ""
-const base = ""
+const base = "http://192.168.156.211:3721"
 
 export default {
   baseOptions(params, method = 'GET') {

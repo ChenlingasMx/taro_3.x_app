@@ -26,7 +26,8 @@
     "dev:rn": "npm run build:rn -- --watch",
     "dev:qq": "npm run build:qq -- --watch",
     "dev:jd": "npm run build:jd -- --watch",
-    "dev:quickapp": "npm run build:quickapp -- --watch"
+    "dev:quickapp": "npm run build:quickapp -- --watch",
+    "api": "mocker ./mocker"
   },
   "browserslist": [
     "last 3 versions",
@@ -44,6 +45,7 @@
     "dva-core": "^2.0.4",
     "dva-loading": "^3.0.22",
     "lodash": "^4.17.21",
+    "mocker-api": "^2.8.3",
     "moment": "^2.29.1",
     "react": "^16.10.0",
     "react-dom": "^16.10.0",
