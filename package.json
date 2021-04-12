@@ -28,6 +28,7 @@
     "dev:jd": "npm run build:jd -- --watch",
     "dev:quickapp": "npm run build:quickapp -- --watch",
     "api": "mocker ./mocker",
+    "lint": "eslint --ext .jsx src",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "precommit": "npm run lint"
   },
