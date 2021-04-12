@@ -3,14 +3,13 @@ import { HTTP_STATUS } from './status'
 import { logError } from './logError'
 
 const token = ""
-const base = "http://192.168.156.211:3721"
+const base = "http://192.168.1.101:3721"
 
 export default {
   baseOptions(params, method = 'GET') {
     let { url, data } = params
     // let token = getApp().globalData.token
     // if (!token) login()
-    console.log('params', params)
     let contentType = 'application/x-www-form-urlencoded'
     contentType = params.contentType || contentType
     const option = {
