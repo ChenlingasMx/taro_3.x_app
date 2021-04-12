@@ -5,11 +5,8 @@ const noProxy = process.env.NO_PROXY === 'true';
 
 const proxy = {
   _proxy: {
-
     // http://10.10.103.79:8001
-    proxy: {
-      
-    },
+    proxy: {},
   },
   changeHost: true,
   ...login,

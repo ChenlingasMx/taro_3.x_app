@@ -1,49 +1,46 @@
-import { create } from "dva-core";
-import { createLogger } from "redux-logger";
-import createLoading from "dva-loading";
+import { create } from 'dva-core';
+import { createLogger } from 'redux-logger';
+import createLoading from 'dva-loading';
 
 let app, store, dispatch, registered;
 
 function createApp(opt) {
+  // redux日志
+  opt.onAction = [];
+  if (opt.enableLog) {
+    opt.onAction.push(createLogger());
+  }
+  app = create(opt);
+  app.use(createLoading());
 
-    // redux日志
-    opt.onAction = []
-    if (opt.enableLog) {
-        opt.onAction.push(createLogger())
+  // 注入model
 
-    }
-    app = create(opt)
-    app.use(createLoading())
+  if (!registered) {
+    opt.models.forEach(model => app.model(model));
+  }
 
-    // 注入model
+  registered = true;
+  app.start();
 
-    if (!registered) {
-        opt.models.forEach(model => app.model(model));
-    }
+  // 设置store
+  store = app._store;
+  app.getStore = () => store;
+  app.use({
+    onError(err) {
+      console.log(err);
+    },
+  });
 
-    registered = true;
-    app.start()
+  // 设置dispatch
 
-    // 设置store
-    store = app._store;
-    app.getStore = () => store;
-    app.use({
-        onError(err) {
-            console.log(err);
-        }
-
-    })
-
-    // 设置dispatch
-
-    dispatch = store.dispatch;
-    app.dispatch = dispatch;
-    return app;
+  dispatch = store.dispatch;
+  app.dispatch = dispatch;
+  return app;
 }
 
 export default {
-    createApp,
-    getDispatch() {
-        return app.dispatch
-    }
+  createApp,
+  getDispatch() {
+    return app.dispatch;
+  },
 };
