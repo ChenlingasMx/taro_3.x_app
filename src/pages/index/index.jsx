@@ -1,34 +1,55 @@
-import React, { useEffect } from 'react';
-import { View, Text } from '@tarojs/components';
+import React from 'react';
+import { View } from '@tarojs/components';
 import { connect } from 'react-redux';
-import { AtButton, AtInput } from 'taro-ui';
+import { AtButton, AtInput, AtForm } from 'taro-ui';
 import 'taro-ui/dist/style/components/button.scss'; // 按需引入
+import 'taro-ui/dist/style/components/form.scss';
+import 'taro-ui/dist/style/components/input.scss';
 import './index.less';
 
+// eslint-disable-next-line
 const Index = React.forwardRef((props, ref) => {
   const {
-    global: { name, inputValue },
+    global: {
+      form: { userName, passWord },
+      form,
+    },
   } = props;
 
-  const handleClick = () => {
-    props.dispatch({
-      type: 'global/save',
-      payload: {
-        name: 'taro-ui欢迎你的到来',
-      },
-    });
+  // 点击提交按钮 调用接口
+  const handleSubmit = () => {
+    window.console.log('form', form);
+  };
+
+  // 输入input变化
+  const handleInputChange = (type, value) => {
+    if (type === 'userName') {
+      props.dispatch({ type: 'global/save', payload: { form: { ...form, userName: value } } });
+    }
+    if (type === 'passWord') {
+      props.dispatch({ type: 'global/save', payload: { form: { ...form, passWord: value } } });
+    }
   };
 
   return (
     <View className="index">
-      <Text>{name}</Text>
-      <AtInput
-        value={inputValue}
-        onChange={e => props.dispatch({ type: 'global/save', payload: { inputValue: e } })}
-      />
-      <Text className="title">{inputValue}</Text>
-      <Text style={{ color: 'red' }}>{inputValue}</Text>
-      <AtButton onClick={handleClick.bind(this)} />
+      <AtForm onSubmit={handleSubmit.bind(this)}>
+        <AtInput
+          title="账号"
+          type="userName"
+          placeholder="请输入账号"
+          value={userName}
+          onChange={handleInputChange.bind(this, 'userName')}
+        />
+        <AtInput
+          title="密码"
+          type="password"
+          placeholder="请输入密码"
+          value={passWord}
+          onChange={handleInputChange.bind(this, 'passWord')}
+        />
+        <AtButton formType="submit">提交</AtButton>
+      </AtForm>
     </View>
   );
 });
