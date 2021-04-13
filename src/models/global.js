@@ -1,6 +1,5 @@
 import Taro from '@tarojs/taro';
-import { message } from 'taro-ui';
-import { login } from '../service/Login/login';
+import { login } from '@/service/Login/login';
 
 export default {
   namespace: 'global', // 这是模块名
@@ -14,10 +13,7 @@ export default {
     *login({ payload }, { call }) {
       const data = yield call(login, payload);
       if (data.code === 1) {
-        message(data.message);
         Taro.setStorage({ key: 'token', data: data.data.token });
-      } else {
-        message(data.message);
       }
     },
   },
