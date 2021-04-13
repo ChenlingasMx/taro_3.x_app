@@ -33,11 +33,11 @@ const Index = React.forwardRef((props, ref) => {
 
   return (
     <View className="index">
-      <AtForm onSubmit={handleSubmit.bind(this)}>
+      <AtForm>
         <AtInput
           title="账号"
-          type="userName"
-          placeholder="请输入账号"
+          type="userPhone"
+          placeholder="请输入手机号"
           value={userName}
           onChange={handleInputChange.bind(this, 'userName')}
         />
@@ -48,7 +48,9 @@ const Index = React.forwardRef((props, ref) => {
           value={passWord}
           onChange={handleInputChange.bind(this, 'passWord')}
         />
-        <AtButton formType="submit">提交</AtButton>
+        <AtButton className="login_btn" formType="submit" onClick={handleSubmit.bind(this)}>
+          登录
+        </AtButton>
       </AtForm>
     </View>
   );
