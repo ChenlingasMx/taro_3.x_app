@@ -2,9 +2,6 @@ import React from 'react';
 import { View } from '@tarojs/components';
 import { connect } from 'react-redux';
 import { AtButton, AtInput, AtForm } from 'taro-ui';
-import 'taro-ui/dist/style/components/button.scss'; // 按需引入
-import 'taro-ui/dist/style/components/form.scss';
-import 'taro-ui/dist/style/components/input.scss';
 import './index.less';
 
 // eslint-disable-next-line
@@ -19,6 +16,10 @@ const Index = React.forwardRef((props, ref) => {
   // 点击提交按钮 调用接口
   const handleSubmit = () => {
     window.console.log('form', form);
+    props.dispatch({
+      type: 'global/login',
+      payload: form,
+    });
   };
 
   // 输入input变化

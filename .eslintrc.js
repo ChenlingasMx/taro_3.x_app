@@ -39,7 +39,7 @@ module.exports = {
     'react/jsx-filename-extension': [
       1,
       {
-        extensions: ['.jsx'],
+        extensions: ['.jsx', '.js'],
       },
     ],
     'react/jsx-no-bind': 0,
