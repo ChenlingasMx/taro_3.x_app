@@ -47,6 +47,7 @@ const Index = React.forwardRef((props, ref) => {
         <AtButton className="login_btn" onClick={handleSubmit.bind(this)}>
           登录
         </AtButton>
+        <View className="border"></View>
       </AtForm>
     </View>
   );
