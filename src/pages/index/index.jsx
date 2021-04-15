@@ -25,7 +25,6 @@ const Index = React.forwardRef((props, ref) => {
       props.dispatch({ type: 'global/save', payload: { form: { ...form, passWord: value } } });
     }
   };
-
   return (
     <View className="index">
       <AtForm>
