@@ -27,7 +27,7 @@ function createApp(opt) {
   app.getStore = () => store;
   app.use({
     onError(err) {
-      console.log(err);
+      window.console.log(err);
     },
   });
 

@@ -12,7 +12,6 @@ export default {
 
   effects: {
     *login({ payload }, { call }) {
-      window.console.log('payload', payload);
       const data = yield call(login, payload);
       if (data.code === 1) {
         Taro.setStorage({ key: 'token', data: data.data.token });

@@ -1,24 +1,57 @@
 import Taro from '@tarojs/taro';
 import { HTTP_STATUS } from './status';
 import { logError } from './logError';
+import config from '../utils/config';
 
 const token = '';
-const base = 'http://192.168.1.101:3721';
+
+// 获取api地址
+const _getHostType = () => {
+  if (config.production || config.testProduction) {
+    return config.hosts.filter(itm => itm.type === 'production');
+  } else {
+    return config.hosts[0];
+  }
+};
 
 export default {
   baseOptions(params, method = 'GET') {
     let { url, data } = params;
     // let token = getApp().globalData.token
-    // if (!token) login()
-    let contentType = 'application/x-www-form-urlencoded';
-    contentType = params.contentType || contentType;
+    // if (!token)
+    let header = {
+      Accept: 'application/json',
+      'Content-Type': 'application/x-www-form-urlencoded',
+      //'Content-Type': 'application/json',
+      token: token,
+      ...(params.contentType && params.contentType),
+    };
+    let hosts;
+    let base;
+    hosts = _getHostType();
+    if (Array.isArray(hosts) && hosts.length > 1) {
+      hosts.forEach(singleHost => {
+        if (url.indexOf(singleHost.label) > -1) {
+          // 测试
+          if (config.testProduction) {
+            base = singleHost.urlTextService;
+          }
+          // 生产
+          if (config.production) {
+            base = singleHost.urlProdService;
+          }
+        }
+      });
+    } else {
+      base = hosts.url;
+    }
     const option = {
       isShowLoading: false,
       loadingText: '正在加载',
       url: base + url,
       data: data,
       method: method,
-      header: { 'content-type': contentType, token: token },
+      header: { ...header },
       success(res) {
         if (res.statusCode === HTTP_STATUS.NOT_FOUND) {
           return logError('api', '请求资源不存在');

@@ -12,6 +12,7 @@ const Index = React.forwardRef((props, ref) => {
 
   // 点击提交按钮 调用接口
   const handleSubmit = () => {
+    props.dispatch({ type: 'global/login' });
     window.console.log('form', form);
   };
 
