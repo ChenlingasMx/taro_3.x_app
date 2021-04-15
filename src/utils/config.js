@@ -3,11 +3,12 @@ import Taro from '@tarojs/taro';
 export default {
   // 微信版本号
   version: Taro.getSystemInfoSync().version,
-  // 为true的话 接口是测试环境, testProduction production都为false 为mock数据
-  testProduction: true,
+  // 为true的话 接口是测试环境, testProduction production都为false 为mocker数据地址
+  testProduction: false,
   // 为true的话 接口是生产环境
   production: false,
   hosts: [
+    // mocker数据地址
     {
       label: 'Test Environment',
       type: 'Test',
