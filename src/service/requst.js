@@ -18,7 +18,7 @@ export default {
   baseOptions(params, method = 'GET') {
     let { url, data } = params;
     // let token = getApp().globalData.token
-    // if (!token)
+    // if (!token) { return }
     let header = {
       Accept: 'application/json',
       'Content-Type': 'application/x-www-form-urlencoded',
