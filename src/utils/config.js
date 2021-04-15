@@ -15,7 +15,15 @@ export default {
       url: 'http://192.168.1.101:3721',
     },
     {
-      label: '/api',
+      label: '/api/basicData',
+      type: 'production',
+      // 测试地址
+      urlTextService: 'http://192.168.1.101:8001',
+      // 生产地址
+      urlProdService: 'http://192.168.1.101:8002',
+    },
+    {
+      label: '/api/login',
       type: 'production',
       // 测试地址
       urlTextService: 'http://192.168.1.101:8001',
