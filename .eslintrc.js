@@ -53,6 +53,7 @@ module.exports = {
     'no-underscore-dangle': 0,
     'no-plusplus': 0,
     'react/no-did-mount-set-state': 0,
+    'react-hooks/exhaustive-deps': 0,
   },
   parserOptions: {
     ecmaVersion: 6,
