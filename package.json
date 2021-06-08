@@ -41,9 +41,11 @@
     "@babel/runtime": "^7.7.7",
     "@tarojs/cli": "3.0.21",
     "@tarojs/components": "3.0.21",
+    "@tarojs/plugin-sass": "^2.2.10",
     "@tarojs/react": "3.0.21",
     "@tarojs/runtime": "3.0.21",
     "@tarojs/taro": "3.0.21",
+    "bootstrap": "^5.0.1",
     "dva-core": "^2.0.4",
     "dva-loading": "^3.0.22",
     "lodash": "^4.17.21",
@@ -63,17 +65,17 @@
     "@tarojs/webpack-runner": "3.0.21",
     "@types/react": "^16.0.0",
     "@types/webpack-env": "^1.13.6",
-    "babel-preset-taro": "3.0.21",
     "babel-eslint": "9.0.0",
+    "babel-preset-taro": "3.0.21",
     "eslint": "^6.8.0",
     "eslint-config-taro": "3.0.21",
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-react": "^7.8.2",
     "eslint-plugin-react-hooks": "^1.6.1",
-    "stylelint": "9.3.0",
     "husky": "4.3.8",
     "lint-staged": "10.0.7",
-    "prettier": "1.19.1"
+    "prettier": "1.19.1",
+    "stylelint": "9.3.0"
   },
   "lint-staged": {
     "*.{js,jsx}": [

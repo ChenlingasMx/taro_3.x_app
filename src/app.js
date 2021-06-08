@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import dva from './utils/dva';
 import models from './models/index';
+import 'bootstrap/dist/css/bootstrap.css';
 
 const dvaApp = dva.createApp({
   initialState: {},

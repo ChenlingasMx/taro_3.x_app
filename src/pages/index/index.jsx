@@ -1,54 +1,53 @@
 import React from 'react';
 import { View } from '@tarojs/components';
 import { connect } from 'react-redux';
-import { AtButton, AtInput, AtForm } from 'taro-ui';
 import './index.less';
-
 // eslint-disable-next-line
 const Index = React.forwardRef((props, ref) => {
   const {
-    global: { form },
+    global: { data },
   } = props;
-
-  // 点击提交按钮 调用接口
-  const handleSubmit = () => {
-    props.dispatch({ type: 'global/login' });
-    window.console.log('form', form);
-  };
-
-  // 输入input变化
-  const handleInputChange = (type, value) => {
-    if (type === 'userName') {
-      props.dispatch({ type: 'global/save', payload: { form: { ...form, userName: value } } });
-    }
-    if (type === 'passWord') {
-      props.dispatch({ type: 'global/save', payload: { form: { ...form, passWord: value } } });
-    }
-  };
+  const html = `
+    <div class="table-responsive-sm">
+      <table class="table table-hover text-nowrap table-responsive">
+       <thead>
+        <tr class="bg-warning">
+          <th scope="col" class="center">组织</th>
+          <th scope="col" class="center">货源结构</th>
+          <th scope="col" class="center">时实货量</th>
+          <th scope="col" class="center">票数</th>
+          <th scope="col" class="center">环比昨日</th>
+          <th scope="col" class="center">环比增长率</th>
+          <th scope="col" class="center">同比增长</th>
+          <th scope="col" class="center">同比增长率</th>
+          <th scope="col" class="center">票均重</th>
+        </tr>
+      </thead>
+     <tbody>
+        ${data
+    .map(
+      itm => `
+          <tr key={itm.id}>
+            <th scope="row" class="center">${itm.city}</th>
+            <td class="center">${itm.name}</td>
+            <td class="center">${itm.name2}</td>
+            <td class="center">${itm.name3}</td>
+            <td class="center">${itm.name4}</td>
+            <td class="center">${itm.name5}</td>
+            <td class="center">${itm.name6}</td>
+            <td class="center">${itm.name7}</td>
+            <td class="center">${itm.name8}</td>
+          </tr>
+        `,
+    )
+    .join('')}
+      </tbody>
+    </table>
+  </div>
+`;
   return (
-    <View className="index">
-      <AtForm>
-        <AtInput
-          name="userName"
-          title="账号"
-          type="text"
-          placeholder="请输入手机号"
-          value={form.userName}
-          onChange={handleInputChange.bind(this)}
-        />
-        <AtInput
-          name="passWord"
-          title="密码"
-          type="password"
-          placeholder="请输入密码"
-          value={form.passWord}
-          onChange={handleInputChange.bind(this)}
-        />
-        <AtButton className="login_btn" onClick={handleSubmit.bind(this)}>
-          登录
-        </AtButton>
-        <View className="border"></View>
-      </AtForm>
+    <View class="index">
+      <View dangerouslySetInnerHTML={{ __html: html }}></View>
     </View>
   );
 });

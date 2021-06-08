@@ -54,6 +54,7 @@ module.exports = {
     'no-plusplus': 0,
     'react/no-did-mount-set-state': 0,
     'react-hooks/exhaustive-deps': 0,
+    'import/first': 0,
   },
   parserOptions: {
     ecmaVersion: 6,
